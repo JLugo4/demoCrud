@@ -12,7 +12,8 @@
         }
     }
 
-    function create() {
+    function create(event) {
+        event.preventDefault();
         // get the values that are in the input fields
         const personIdElement = document.getElementById("person-id");
         const firstNameElement = document.getElementById("first-name");
