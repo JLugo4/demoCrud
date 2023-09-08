@@ -94,17 +94,7 @@ function readById(event) {
     event.preventDefault();
     // get the values that are in the input fields
     const personIdElement = document.getElementById("person-id");
-    const firstNameElement = document.getElementById("first-name");
-    const lastNameElement = document.getElementById("last-name");
-
     const personIdValue = personIdElement.value;
-    const firstNameValue = firstNameElement.value;
-    const lastNameValue = lastNameElement.value;
-    const person = new Person(personIdValue, firstNameValue, lastNameValue);
-
-    // call the create function of the spring boot app with the values
-    const personData = JSON.stringify(person);
-    console.log(personData);
 
     $.ajax({
         type: "GET",
@@ -115,10 +105,15 @@ function readById(event) {
             'Access-Control-Allow-Origin': '*'
         },
         url: "/readById/" + personIdValue,
-        data: personData,
         dataType: "JSON",
         success: function(response) {
-            alert(JSON.stringify(response));
+            // Handle the successful response from the server
+            if (response) {
+                // Assuming the server returns a JSON object with person data
+                alert("Person ID: " + response.id + "\nFirst Name: " + response.firstName + "\nLast Name: " + response.lastName);
+            } else {
+                alert("Person not found");
+            }
         },
         error: function(request, status, error) {
             console.log("Error while digesting request")
