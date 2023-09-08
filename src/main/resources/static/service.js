@@ -120,3 +120,34 @@ function readById(event) {
         }
     });
 }
+
+function readAll(event) {
+    event.preventDefault();
+    // get the values that are in the input fields
+    const personIdElement = document.getElementById("person-id");
+    const personIdValue = personIdElement.value;
+
+    $.ajax({
+        type: "GET",
+        crossDomain: true,
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        url: "/readAll/",
+        dataType: "JSON",
+        success: function(response) {
+            alert(JSON.stringify(response));
+        },
+        error: function(request, status, error) {
+            console.log("Error while digesting request")
+            console.log("Request value ↓")
+            console.log(request)
+            console.log("Status value ↓")
+            console.log(status);
+            console.log("Error value ↓")
+            console.log(error);
+        }
+    });
+}
