@@ -107,13 +107,7 @@ function readById(event) {
         url: "/readById/" + personIdValue,
         dataType: "JSON",
         success: function(response) {
-            // Handle the successful response from the server
-            if (response) {
-                // Assuming the server returns a JSON object with person data
-                alert("Person ID: " + response.id + "\nFirst Name: " + response.firstName + "\nLast Name: " + response.lastName);
-            } else {
-                alert("Person not found");
-            }
+            alert(JSON.stringify(response));
         },
         error: function(request, status, error) {
             console.log("Error while digesting request")

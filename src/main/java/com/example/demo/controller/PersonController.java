@@ -27,7 +27,7 @@ public class PersonController {
         return new ResponseEntity<>(service.create(person), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/read/{Id}")
+    @GetMapping(value = "/readById/{Id}")
     public ResponseEntity<PersonModel> readById(@PathVariable Long Id){
         return new ResponseEntity<>(service.readById(Id), HttpStatus.OK);
     }
