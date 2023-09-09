@@ -172,7 +172,7 @@ function update(event) {
             'Content-Type':'application/json',
             'Access-Control-Allow-Origin': '*'
         },
-        url: "/update",
+        url: "/update/" + personIdValue,
         data: personData,
         dataType: "JSON",
         success: function(response) {
