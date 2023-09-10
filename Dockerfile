@@ -1,3 +1,4 @@
+# Use a multi-stage build for efficiency and security
 # Build Stage
 FROM maven:3.8.4-openjdk-17 as build
 WORKDIR /workspace/app
