@@ -1,12 +1,16 @@
-# Use a multi-stage build for efficiency and security
 # Build Stage
-FROM maven:3.8.4-openjdk-17 as build
+FROM openjdk:8-jdk-alpine as build
 WORKDIR /workspace/app
-COPY . .
-RUN mvn clean install -DskipTests
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+RUN chmod +x ./mvnw
+RUN ./mvnw install -DskipTests
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 # Final Stage
-FROM openjdk:17-jdk-alpine
+FROM openjdk:8-jdk-alpine
 
 # Set up volumes and arguments
 VOLUME /tmp
